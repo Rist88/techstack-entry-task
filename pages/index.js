@@ -42,6 +42,8 @@ export default function Home() {
 
   const [salariesData, setSalariesData] = useState(salariesInit);
   const [teamData, setTeamData] = useState(teamInit);
+  const [salariesDataType, setSalariesDataType] = useState("object");
+  const [teamDataType, setTeamDataType] = useState("object");
 
   const prettifyObj = (obj) =>
     stringifyObject(obj, {
@@ -72,15 +74,46 @@ export default function Home() {
               <label>
                 Enter salaries data:
                 <br />
-                <input
-                  type={"text"}
+                <textarea
+                  style={{ height: "4rem" }}
                   onChange={(e) => {
                     if (e.target.value) {
-                      setSalariesData(eval(`(${e.target.value})`));
-                      console.log(stringifyObject(salariesData));
+                      if (salariesDataType === "object") {
+                        setSalariesData(eval(`(${e.target.value})`));
+                      } else if (salariesDataType === "JSON") {
+                        setSalariesData(JSON.parse(e.target.value));
+                      }
+                    }
+                  }}
+                ></textarea>
+              </label>
+              <br />
+              <label>
+                <input
+                  type="radio"
+                  value="object"
+                  checked={salariesDataType === "object"}
+                  onChange={(e) => {
+                    if (e.target.value) {
+                      setSalariesDataType(e.target.value);
                     }
                   }}
                 />
+                JavaScript object
+              </label>
+              <br />
+              <label>
+                <input
+                  type="radio"
+                  value="JSON"
+                  checked={salariesDataType === "JSON"}
+                  onChange={(e) => {
+                    if (e.target.value) {
+                      setSalariesDataType(e.target.value);
+                    }
+                  }}
+                />
+                JSON
               </label>
               <hr />
               <pre>{prettifyObj(salariesData)}</pre>
@@ -90,15 +123,46 @@ export default function Home() {
               <label>
                 Enter team data:
                 <br />
-                <input
-                  type={"text"}
+                <textarea
+                  style={{ height: "4rem" }}
                   onChange={(e) => {
                     if (e.target.value) {
-                      setTeamData(eval(`(${e.target.value})`));
-                      console.log(stringifyObject(teamData));
+                      if (teamDataType === "object") {
+                        setTeamData(eval(`(${e.target.value})`));
+                      } else if (teamDataType === "JSON") {
+                        setTeamData(JSON.parse(e.target.value));
+                      }
+                    }
+                  }}
+                ></textarea>
+              </label>
+              <br />
+              <label>
+                <input
+                  type="radio"
+                  value="object"
+                  checked={teamDataType === "object"}
+                  onChange={(e) => {
+                    if (e.target.value) {
+                      setTeamDataType(e.target.value);
                     }
                   }}
                 />
+                JavaScript object
+              </label>
+              <br />
+              <label>
+                <input
+                  type="radio"
+                  value="JSON"
+                  checked={teamDataType === "JSON"}
+                  onChange={(e) => {
+                    if (e.target.value) {
+                      setTeamDataType(e.target.value);
+                    }
+                  }}
+                />
+                JSON
               </label>
               <hr />
               <pre>{prettifyObj(teamData)}</pre>
