@@ -1,3 +1,8 @@
+// I've also created simple web visualisation for this function. Please, try it
+// here: https://techstack-entry-task.vercel.app/
+// If you want to see the source code, you can find it
+// here: https://github.com/Rist88/techstack-entry-task
+
 function calculateTeamFinanceReport(salaries, team) {
   // parse tax value (a simple parseInt will be sufficient for our usecase👌)
   const parseTax = (tax) => parseInt(tax);
